@@ -24,9 +24,8 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 
-# Fix for Streamlit Cloud async event loop
-import nest_asyncio
-nest_asyncio.apply()
+# Note: nest_asyncio removed - incompatible with uvloop on Streamlit Cloud
+# Using synchronous approach instead
 
 # Add project root to path
 PROJECT_ROOT = Path(__file__).parent.parent.parent
@@ -260,19 +259,32 @@ def create_criteria_chart(results: list) -> go.Figure:
     return fig
 
 
-async def run_screening(patient_data: dict, trial_protocol: str, trial_id: str) -> dict:
-    """Run the screening workflow."""
+def run_screening(patient_data: dict, trial_protocol: str, trial_id: str) -> dict:
+    """Run the screening workflow (synchronous wrapper for Streamlit)."""
     try:
         from src.agents.supervisor import SupervisorAgent
         agent = SupervisorAgent()
-        result = await agent.screen_patient(
-            patient_data=patient_data,
-            trial_protocol=trial_protocol,
-            trial_id=trial_id
-        )
+
+        # Create async coroutine
+        async def _async_screen():
+            return await agent.screen_patient(
+                patient_data=patient_data,
+                trial_protocol=trial_protocol,
+                trial_id=trial_id
+            )
+
+        # Run in a new event loop (safe for Streamlit)
+        loop = asyncio.new_event_loop()
+        try:
+            result = loop.run_until_complete(_async_screen())
+        finally:
+            loop.close()
+
         return result
     except Exception as e:
         st.error(f"Screening error: {str(e)}")
+        import traceback
+        st.error(traceback.format_exc())
         return None
 
 
@@ -549,12 +561,12 @@ if st.button("Run Eligibility Screening", type="primary", use_container_width=Tr
                 3. Severe renal impairment (eGFR < 30 mL/min)
                 """
 
-            # Run async screening
-            result = asyncio.run(run_screening(
+            # Run screening (now synchronous)
+            result = run_screening(
                 st.session_state.patient_data,
                 trial_protocol,
                 trial_id
-            ))
+            )
 
             if result:
                 st.session_state.screening_result = result
