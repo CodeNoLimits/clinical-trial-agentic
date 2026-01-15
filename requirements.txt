@@ -28,3 +28,4 @@ numpy>=1.26.0
 # Utilities
 python-dotenv>=1.0.0
 tqdm>=4.66.0
+nest-asyncio>=1.6.0

@@ -17,17 +17,26 @@ import json
 import asyncio
 from datetime import datetime
 from typing import Dict, Any, Optional
+from pathlib import Path
 
 import streamlit as st
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 
-# Add project root to path
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+# Fix for Streamlit Cloud async event loop
+import nest_asyncio
+nest_asyncio.apply()
 
+# Add project root to path
+PROJECT_ROOT = Path(__file__).parent.parent.parent
+sys.path.insert(0, str(PROJECT_ROOT))
+
+# Load .env only if it exists (local dev), otherwise rely on st.secrets
 from dotenv import load_dotenv
-load_dotenv()
+env_file = PROJECT_ROOT / ".env"
+if env_file.exists():
+    load_dotenv(env_file)
 
 
 # =============================================================================
@@ -37,25 +46,32 @@ load_dotenv()
 def get_api_key() -> str:
     """
     Get Google API key from multiple sources (in priority order):
-    1. Environment variable (.env file)
-    2. Streamlit secrets (for cloud deployment)
+    1. Streamlit secrets (for cloud deployment - PRIORITY)
+    2. Environment variable (.env file for local dev)
     3. Session state (user input in sidebar)
+    4. Direct GOOGLE_API_KEY secret
 
     NEVER returns mock data - raises error if no key found.
     """
-    # Source 1: Environment variable
-    api_key = os.getenv("GOOGLE_API_KEY")
-    if api_key and api_key != "your_gemini_api_key_here":
-        return api_key
-
-    # Source 2: Streamlit secrets (for deployment)
+    # Source 1: Streamlit secrets (PRIORITY for Streamlit Cloud)
     try:
+        # Try nested format first
         api_key = st.secrets.get("google", {}).get("api_key")
+        if api_key and api_key != "your_gemini_api_key_here":
+            os.environ["GOOGLE_API_KEY"] = api_key
+            return api_key
+        # Try direct GOOGLE_API_KEY
+        api_key = st.secrets.get("GOOGLE_API_KEY")
         if api_key and api_key != "your_gemini_api_key_here":
             os.environ["GOOGLE_API_KEY"] = api_key
             return api_key
     except Exception:
         pass
+
+    # Source 2: Environment variable (local dev)
+    api_key = os.getenv("GOOGLE_API_KEY")
+    if api_key and api_key != "your_gemini_api_key_here":
+        return api_key
 
     # Source 3: Session state (user entered via sidebar)
     if "google_api_key" in st.session_state and st.session_state.google_api_key:
