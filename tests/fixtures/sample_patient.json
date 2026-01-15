@@ -1,0 +1,82 @@
+{
+  "patient_id": "PT_TEST_001",
+  "age": 58,
+  "sex": "male",
+  "diagnoses": [
+    {
+      "condition": "Type 2 Diabetes Mellitus",
+      "icd10": "E11.9",
+      "date_diagnosed": "2020-03-15"
+    },
+    {
+      "condition": "Essential Hypertension",
+      "icd10": "I10",
+      "date_diagnosed": "2018-06-20"
+    }
+  ],
+  "medications": [
+    {
+      "drug_name": "Metformin",
+      "generic_name": "Metformin Hydrochloride",
+      "dose": "1000mg",
+      "frequency": "twice daily",
+      "start_date": "2020-04-01"
+    },
+    {
+      "drug_name": "Lisinopril",
+      "generic_name": "Lisinopril",
+      "dose": "10mg",
+      "frequency": "once daily",
+      "start_date": "2018-07-01"
+    }
+  ],
+  "lab_values": [
+    {
+      "test": "HbA1c",
+      "value": 8.2,
+      "unit": "%",
+      "date": "2024-01-15",
+      "reference_range": "4.0-5.6%"
+    },
+    {
+      "test": "Fasting Glucose",
+      "value": 145,
+      "unit": "mg/dL",
+      "date": "2024-01-15",
+      "reference_range": "70-100 mg/dL"
+    },
+    {
+      "test": "eGFR",
+      "value": 85,
+      "unit": "mL/min/1.73m²",
+      "date": "2024-01-15",
+      "reference_range": ">90 mL/min/1.73m²"
+    },
+    {
+      "test": "Serum Creatinine",
+      "value": 0.95,
+      "unit": "mg/dL",
+      "date": "2024-01-15",
+      "reference_range": "0.7-1.3 mg/dL"
+    }
+  ],
+  "medical_history": [
+    "Hypertension diagnosed 2018",
+    "No history of cardiovascular events",
+    "No history of diabetic ketoacidosis"
+  ],
+  "lifestyle": {
+    "smoking_status": "former",
+    "years_quit": 5,
+    "alcohol_use": "occasional",
+    "pregnancy_status": "not_applicable"
+  },
+  "allergies": [],
+  "vital_signs": {
+    "blood_pressure": "135/85",
+    "heart_rate": 72,
+    "weight_kg": 85,
+    "height_cm": 175,
+    "bmi": 27.8
+  }
+}

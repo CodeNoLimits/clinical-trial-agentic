@@ -1,0 +1,30 @@
+# Clinical Trial Agentic - Streamlit Cloud Dependencies
+# Optimized for deployment (minimal footprint)
+
+# Core LLM & Agents
+langchain>=0.3.0
+langgraph>=0.2.0
+langchain-google-genai>=2.0.0
+langchain-core>=0.3.0
+
+# Vector Database & Embeddings
+chromadb>=0.5.0
+sentence-transformers>=3.0.0
+
+# RAG & Retrieval
+rank-bm25>=0.2.2
+
+# API Framework (for internal use)
+pydantic>=2.0.0
+
+# UI
+streamlit>=1.40.0
+plotly>=5.22.0
+
+# Data Processing
+pandas>=2.2.0
+numpy>=1.26.0
+
+# Utilities
+python-dotenv>=1.0.0
+tqdm>=4.66.0

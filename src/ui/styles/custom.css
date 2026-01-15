@@ -1,0 +1,193 @@
+/* Clinical Trial Screening - Custom Styles */
+
+/* Main container */
+.stApp {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Decision banners */
+.eligibility-eligible {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    color: white;
+    padding: 25px;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+}
+
+.eligibility-ineligible {
+    background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+    color: white;
+    padding: 25px;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3);
+}
+
+.eligibility-uncertain {
+    background: linear-gradient(135deg, #ffc107 0%, #e0a800 100%);
+    color: #212529;
+    padding: 25px;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(255, 193, 7, 0.3);
+}
+
+/* Confidence indicators */
+.confidence-high { color: #28a745; font-weight: bold; }
+.confidence-moderate { color: #17a2b8; font-weight: bold; }
+.confidence-low { color: #ffc107; font-weight: bold; }
+.confidence-very-low { color: #dc3545; font-weight: bold; }
+
+/* Metric cards */
+.metric-card {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 20px;
+    border-radius: 12px;
+    margin: 10px 0;
+    border-left: 4px solid #007bff;
+}
+
+/* Tables */
+.explainability-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.explainability-table th {
+    background-color: #343a40;
+    color: white;
+    padding: 12px;
+    text-align: left;
+}
+
+.explainability-table td {
+    padding: 10px;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.explainability-table tr:hover {
+    background-color: #f8f9fa;
+}
+
+/* Status badges */
+.status-match {
+    background-color: #28a745;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.status-no-match {
+    background-color: #dc3545;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.status-uncertain {
+    background-color: #ffc107;
+    color: #212529;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.status-missing {
+    background-color: #6c757d;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* Progress bars */
+.confidence-bar {
+    height: 24px;
+    border-radius: 12px;
+    background: #e9ecef;
+    overflow: hidden;
+}
+
+.confidence-bar-fill {
+    height: 100%;
+    transition: width 0.5s ease-in-out;
+}
+
+/* Cards */
+.patient-card {
+    background: white;
+    border: 1px solid #dee2e6;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 15px 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.trial-card {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 12px;
+    padding: 25px;
+    margin: 15px 0;
+}
+
+/* Form elements */
+.stTextInput > div > div > input {
+    border-radius: 8px;
+}
+
+.stSelectbox > div > div {
+    border-radius: 8px;
+}
+
+/* Buttons */
+.stButton > button {
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.stButton > button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* Sidebar */
+.css-1d391kg {
+    background: linear-gradient(180deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+/* Expanders */
+.streamlit-expanderHeader {
+    font-weight: 600;
+    color: #343a40;
+}
+
+/* Code blocks */
+.stCodeBlock {
+    border-radius: 8px;
+}
+
+/* Alerts */
+.stAlert {
+    border-radius: 8px;
+}
+
+/* Spinner */
+.stSpinner > div {
+    border-color: #667eea transparent transparent transparent;
+}
